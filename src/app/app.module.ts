@@ -5,18 +5,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import {CoreModule} from './core/core.module';
 import {FormsModule} from '@angular/forms';
-
+import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthService} from './auth/auth.service';
 import {AngularFireModule} from '@angular/fire';
-import {AngularFireAuthModule} from '@angular/fire/auth';
+import * as firebase from "firebase";
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyDDXHuyZI9tv1k804t1CFSX8ZUW3X4j2Ro',
-  authDomain: 'store-app-b46db.firebaseapp.com',
-  databaseURL: 'https://store-app-b46db.firebaseio.com',
-  projectId: 'store-app-b46db',
+  apiKey: 'AIzaSyBssYLqH7M52PFKExBZ15v3_6Bybm8Y9jU',
+  authDomain: 'testing-19954.firebaseapp.com',
+  databaseURL: 'https://testing-19954.firebaseio.com',
+  projectId: 'testing-19954',
   storageBucket: '',
-  messagingSenderId: '1042422698939',
-  appId: '1:1042422698939:web:4ce90687ade91bde0c6a9e'
+  messagingSenderId: '378879944703',
+  appId: '1:378879944703:web:48e03e577bea50c67de9ca'
 };
 @NgModule({
   declarations: [
@@ -31,7 +32,10 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {  firebase.initializeApp(firebaseConfig);
+  }
+}

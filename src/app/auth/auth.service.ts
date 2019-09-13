@@ -18,11 +18,10 @@ export class AuthService {
     });
   }
   async  login(email: string, password: string) {
-console.log(email);
-console.log(password);
-try {
+
+    try {
       await  this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      this.router.navigate(['admin']);
+      await this.router.navigate(['admin']);
     } catch (e) {
       alert('Error!'  +  e.message);
     }
@@ -30,7 +29,7 @@ try {
   async logout() {
     await this.afAuth.auth.signOut();
     localStorage.removeItem('user');
-    this.router.navigate(['login']);
+    await this.router.navigate(['login']);
   }
   get isLoggedIn(): boolean {
     const  user  =  JSON.parse(localStorage.getItem('user'));

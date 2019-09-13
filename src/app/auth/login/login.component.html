@@ -11,13 +11,13 @@
       <img src="https://cdn0.iconfinder.com/data/icons/user-icon-profile-businessman-finance-vector-illus/100/19-1User-512.png" id="icon" alt="User Icon" class="img-fluid"/>
     </div>
     <br><br>
-    <div class="col-md-8">
-
-      <input type="text" class="form-control mb-2" placeholder="Email" #userEmail required autofocus>
-      <input type="password" class="form-control mb-2" placeholder="Password" #userPassword required>
-      <button  class="btn btn-lg btn-primary btn-block mb-1"  (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
-
-    </div>
+    <form (ngSubmit)="authService.login(Email.value, password.value)"#f="ngForm">
+      <input type="text" id="login" class="fadeIn second" name="name" placeholder="login"#Email>
+      <br><br>
+      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password"#password>
+      <br><br>
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
 
     <br>
   </div>
