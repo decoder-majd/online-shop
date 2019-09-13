@@ -1,0 +1,25 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="https://cdn0.iconfinder.com/data/icons/user-icon-profile-businessman-finance-vector-illus/100/19-1User-512.png" id="icon" alt="User Icon" class="img-fluid"/>
+    </div>
+    <br><br>
+    <div class="col-md-8">
+
+      <input type="text" class="form-control mb-2" placeholder="Email" #userEmail required autofocus>
+      <input type="password" class="form-control mb-2" placeholder="Password" #userPassword required>
+      <button  class="btn btn-lg btn-primary btn-block mb-1"  (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
+
+    </div>
+
+    <br>
+  </div>
+</div>
+
