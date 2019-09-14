@@ -3,15 +3,19 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
 import {RestApiService} from '../shared/rest-api.service';
+import {Observable, throwError} from 'rxjs';
+import {DataService} from './login/Data.service';
+import {catchError, retry} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService  {
-
+  apiURL = 'http://localhost:3000';
   user: User;
   route = 'login';
   private s: any;
-  constructor(public  afAuth: AngularFireAuth, public  router: Router, private restApi: RestApiService) {
+  constructor(public  afAuth: AngularFireAuth, public  router: Router, private http: HttpClient) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
@@ -42,8 +46,28 @@ export class AuthService  {
     return  user  !==  null;
   }
   getRole(email: string) {
-    return this.restApi.getRole().subscribe((data: {}) => {
+    return this.getRequest().subscribe((data: {}) => {
       this.route = data[email];
     });
   }
+  getRequest(): Observable<DataService> {
+    return this.http.get<DataService>(this.apiURL + '/Data')
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+  handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+
 }
