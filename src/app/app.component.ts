@@ -1,17 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import * as firebase from 'firebase';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+@Injectable()
 export class AppComponent implements OnInit {
   title = 'online-shop';
-
+constructor() {}
   ngOnInit(): void {
 firebase.initializeApp({
   apiKey: 'AIzaSyCpgS0gQ4Sjqd5ef1BoN7JxWsdoAW_3VnQ',
   authDomain: 'finalproject-68f0b'
 });
+
   }
 }

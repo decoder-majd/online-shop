@@ -8,7 +8,8 @@ import {FormsModule} from '@angular/forms';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthService} from './auth/auth.service';
 import {AngularFireModule} from '@angular/fire';
-import * as firebase from "firebase";
+import * as firebase from 'firebase';
+import { HttpClientModule } from '@angular/common/http';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBssYLqH7M52PFKExBZ15v3_6Bybm8Y9jU',
@@ -24,12 +25,14 @@ const firebaseConfig = {
     AppComponent,
     LoginComponent,
 
+
   ],
   imports: [
     BrowserModule,
     CoreModule,
     FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    HttpClientModule,
     AngularFireAuthModule
   ],
   providers: [AuthService],
