@@ -6,13 +6,13 @@ import {AuthService} from '../auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class DirverGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean| UrlTree {
-    if (this.authService.isLoggedIn && this.authService.route === 'driver') {
+    if (this.authService.isLoggedIn && this.authService.route === 'admin') {
       return true;
     } else {
       return this.router.parseUrl('/login');

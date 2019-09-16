@@ -39,6 +39,9 @@ const firebaseConfig = {
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor() {  firebase.initializeApp(firebaseConfig);
+  constructor() {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
   }
 }
